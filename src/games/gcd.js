@@ -11,7 +11,7 @@ const findGCD = (num1, num2) => {
     num2Copy = num1Copy % num2Copy;
     num1Copy = temp;
   }
-  return num2Copy;
+  return num1Copy;
 };
 
 const generateRound = () => {

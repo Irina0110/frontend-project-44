@@ -32,6 +32,10 @@ export default [
   ...compat.extends('airbnb'),
   {
     rules: {
+      'import/extensions': ['error', 'ignorePackages', {
+        js: 'always',
+      }],
+      'no-underscore-dangle': ['error', { allow: ['__dirname', '__filename'] }],
       'import/no-named-as-default': 'off',
       'import/no-named-as-default-member': 'off',
       'no-console': 'off',
