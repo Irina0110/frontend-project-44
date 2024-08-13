@@ -13,7 +13,7 @@ const playGame = (gameDescription, generateRound) => {
 
   const totalRounds = 3;
 
-  for (let round = 0; round < totalRounds; round++) {
+  for (let round = 0; round < totalRounds; round += 1) {
     const [question, correctAnswer] = generateRound();
     console.log(`Question: ${question}`);
     const userAnswer = readlineSync.question('Your answer: ').toLowerCase();

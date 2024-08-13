@@ -3,12 +3,15 @@ import playGame from '../index.js';
 const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
 const findGCD = (num1, num2) => {
-  while (num2) {
-    const temp = num2;
-    num2 = num1 % num2;
-    num1 = temp;
+  let num1Copy = num1;
+  let num2Copy = num2;
+
+  while (num2Copy) {
+    const temp = num2Copy;
+    num2Copy = num1Copy % num2Copy;
+    num1Copy = temp;
   }
-  return num1;
+  return num2Copy;
 };
 
 const generateRound = () => {
