@@ -1,38 +1,25 @@
 import playGame from '../index.js';
+import { getRandomNumberInRange } from '../helpers.js';
 
-const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+const gameDescription = 'What is the result of the expression?';
 
 const generateExpression = () => {
-  const num1 = getRandomNumber(1, 50);
-  const num2 = getRandomNumber(1, 50);
+  const num1 = getRandomNumberInRange(1, 50);
+  const num2 = getRandomNumberInRange(1, 50);
   const operators = ['+', '-', '*'];
-  const operator = operators[getRandomNumber(0, operators.length - 1)];
+  const operator = operators[getRandomNumberInRange(0, operators.length - 1)];
 
-  let question;
-  let correctAnswer;
+  const question = `${num1} ${operator} ${num2}`;
 
-  switch (operator) {
-    case '+':
-      question = `${num1} + ${num2}`;
-      correctAnswer = num1 + num2;
-      break;
-    case '-':
-      question = `${num1} - ${num2}`;
-      correctAnswer = num1 - num2;
-      break;
-    case '*':
-      question = `${num1} * ${num2}`;
-      correctAnswer = num1 * num2;
-      break;
-    default:
-      break;
-  }
+  const calculate = {
+    '+': num1 + num2,
+    '-': num1 - num2,
+    '*': num1 * num2,
+  };
+
+  const correctAnswer = calculate[operator];
 
   return [question, String(correctAnswer)];
 };
 
-const gameDescription = 'What is the result of the expression?';
-
-const calcGame = () => playGame(gameDescription, generateExpression);
-
-export default calcGame;
+export default () => playGame(gameDescription, generateExpression);

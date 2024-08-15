@@ -1,15 +1,18 @@
 import playGame from '../index.js';
+import { getRandomNumberInRange } from '../helpers.js';
 
-const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+const gameDescription = 'What number is missing in the progression?';
 
-const genProgression = (s, st, len) => Array.from({ length: len }, (_, i) => s + i * st);
+const generateProgression = (start, step, length) => (
+  Array.from({ length }, (_, i) => start + i * step)
+);
 
 const generateRound = () => {
-  const start = getRandomNumber(1, 10);
-  const step = getRandomNumber(1, 10);
-  const length = getRandomNumber(5, 10);
-  const progression = genProgression(start, step, length);
-  const hiddenIndex = getRandomNumber(0, length - 1);
+  const start = getRandomNumberInRange(1, 10);
+  const step = getRandomNumberInRange(1, 10);
+  const length = getRandomNumberInRange(5, 10);
+  const progression = generateProgression(start, step, length);
+  const hiddenIndex = getRandomNumberInRange(0, length - 1);
   const correctAnswer = progression[hiddenIndex].toString();
   progression[hiddenIndex] = '..';
 
@@ -17,8 +20,4 @@ const generateRound = () => {
   return [question, correctAnswer];
 };
 
-const gameDescription = 'What number is missing in the progression?';
-
-const progressionGame = () => playGame(gameDescription, generateRound);
-
-export default progressionGame;
+export default () => playGame(gameDescription, generateRound);

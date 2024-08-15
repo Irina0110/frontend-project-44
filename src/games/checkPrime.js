@@ -1,6 +1,7 @@
 import playGame from '../index.js';
+import { getRandomNumberInRange } from '../helpers.js';
 
-const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+const gameDescription = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 const isPrime = (num) => {
   if (num < 2) return false;
@@ -11,14 +12,10 @@ const isPrime = (num) => {
 };
 
 const generateRound = () => {
-  const number = getRandomNumber(2, 100);
+  const number = getRandomNumberInRange(2, 100);
   const question = `${number}`;
   const correctAnswer = isPrime(number) ? 'yes' : 'no';
   return [question, correctAnswer];
 };
 
-const gameDescription = 'Answer "yes" if given number is prime. Otherwise answer "no".';
-
-const primeGame = () => playGame(gameDescription, generateRound);
-
-export default primeGame;
+export default () => playGame(gameDescription, generateRound);

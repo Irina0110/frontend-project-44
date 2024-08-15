@@ -1,6 +1,7 @@
 import playGame from '../index.js';
+import { getRandomNumber } from '../helpers.js';
 
-const getRandomNumber = () => Math.floor(Math.random() * 100);
+const gameDescription = 'Answer "yes" if the number is even, otherwise answer "no".';
 
 const isEven = (num) => num % 2 === 0;
 
@@ -11,8 +12,4 @@ const generateRound = () => {
   return [question, correctAnswer];
 };
 
-const gameDescription = 'Answer "yes" if the number is even, otherwise answer "no".';
-
-const checkEven = () => playGame(gameDescription, generateRound);
-
-export default checkEven;
+export default () => playGame(gameDescription, generateRound);
